@@ -82,7 +82,7 @@
 
     <div class="contact-image">
 
-        <img src="image/contact2.png" alt="Doctor">
+        <img src="contact2.png" alt="Doctor">
 
     </div>
 
@@ -323,7 +323,30 @@
     </div>
 
 </footer>
+<script>
+    const form = document.getElementById("contactForm");
 
+form.addEventListener("submit", function(e) {
+    e.preventDefault();
+
+    const contactData = {
+        name: document.getElementById("name").value,
+        email: document.getElementById("email").value,
+        message: document.getElementById("message").value,
+        date: new Date().toLocaleString()
+    };
+
+    let contacts = JSON.parse(localStorage.getItem("contacts")) || [];
+
+    contacts.push(contactData);
+
+    localStorage.setItem("contacts", JSON.stringify(contacts));
+
+    alert("Thank you! Your message has been saved.");
+
+    form.reset();
+});
+</script>
 </body>
 
 </html>
